@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:itheima="http://schemas.android.com/apk/res/liu.com.mobilesafe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        style="@style/TitleStyle"
+        android:text="设置中心" />
+
+    <liu.com.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        itheima:desc_off="自动更新已关闭"
+        itheima:desc_on="自动更新已开启"
+        itheima:title="自动更新设置" />
+
+    <liu.com.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        itheima:desc_off="归属地显示已经关闭"
+        itheima:desc_on="归属地显示已经开启"
+        itheima:title="电话归属地显示设置" />
+
+    <liu.com.mobilesafe.view.SettingItemClickView
+        android:id="@+id/sic_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <liu.com.mobilesafe.view.SettingItemClickView
+        android:id="@+id/sic_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
