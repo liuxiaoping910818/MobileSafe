@@ -64,9 +64,13 @@ public class HomeActivity extends Activity {
                         // 手机防盗
                         showSafeDialog();
                         break;
+                    case 1:
+                        startActivity(new Intent(getApplicationContext(),BlackNumberActivity.class));
+                        break;
                     case 7:
                         startActivity(new Intent(getApplicationContext(),AToolsActivity.class));
                         break;
+
                     case 8:
                         // 设置中心
                         startActivity(new Intent(getApplicationContext(),

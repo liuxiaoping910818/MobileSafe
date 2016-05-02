@@ -1,6 +1,8 @@
 package liu.com.mobilesafe.activity;
 
 import android.app.Activity;
+import android.os.SystemClock;
+import android.provider.Settings;
 import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +39,9 @@ public class DragViewActivity extends Activity {
 
     private TextView tvTop;
     private TextView tvBottom;
+
+    //双击事件用的数组
+    long[] mHits = new long[2];// 数组长度就是多击次数
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,8 +151,29 @@ public class DragViewActivity extends Activity {
                         break;
                 }
 
-                return true;// 返回true表示要消耗掉事件
+                // return true;// 返回true表示要消耗掉事件
+                return false;// 当同时设置onTouch和onClick时, 返回false可以保证这两个都响应
             }
         });
+
+        ivDrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                System.arraycopy(mHits,1,mHits,0,mHits.length-1);
+                //给最后一位添加当时点击时的时间
+                mHits[mHits.length-1]= SystemClock.uptimeMillis();//手机开机时的时间
+                //双击事件判断的条件
+                if (SystemClock.uptimeMillis()-mHits[0]<=500){
+
+                    ivDrag.layout(mScreenWidth/2-ivDrag.getWidth()/2,ivDrag.getTop(),mScreenHeight/2-ivDrag.getHeight()/2,
+                            ivDrag.getBottom());
+
+
+                }
+
+            }
+        });
+
     }
 }
