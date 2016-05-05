@@ -1,8 +1,8 @@
 package liu.com.mobilesafe.activity;
 
 import android.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import org.apache.http.client.methods.HttpOptions;
-
 import java.util.ArrayList;
-import java.util.concurrent.RunnableScheduledFuture;
 
 import liu.com.mobilesafe.R;
 import liu.com.mobilesafe.dao.BlackNumberDao;
@@ -113,7 +110,7 @@ public class BlackNumberActivity extends AppCompatActivity {
                 } else {
                     // 在原有集合上追加20条数据
                     ArrayList<BlackNumberInfo> partList = mDao.findPart(mIndex);// 查询下一页数据
-                    // 1,2,3,4,5 , + 6,7,8,9
+                    // 1,2,3,4,5 , + 6,7,8,9，addall方法是在原有数据的基础上继续加条目
                     mList.addAll(partList);
                 }
 
@@ -234,7 +231,7 @@ public class BlackNumberActivity extends AppCompatActivity {
     /**
      * 添加黑名单
      *
-     * @param view
+     * @param v
      */
     public void addBlackNumber(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -292,7 +289,7 @@ public class BlackNumberActivity extends AppCompatActivity {
             }
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+              btnCancel.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

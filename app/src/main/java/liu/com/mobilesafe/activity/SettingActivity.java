@@ -10,6 +10,7 @@ import android.view.View;
 
 import liu.com.mobilesafe.R;
 import liu.com.mobilesafe.service.AddressService;
+import liu.com.mobilesafe.service.BlacknumberService;
 import liu.com.mobilesafe.util.PrefUtils;
 import liu.com.mobilesafe.util.ServiceStatusUtils;
 import liu.com.mobilesafe.view.SettingItemClickView;
@@ -20,6 +21,7 @@ public class SettingActivity extends Activity {
 
     private SettingItemView sivUpdate;
     private SettingItemView sivAddress;
+    private SettingItemView sivBlackNumber;
     private SettingItemClickView sicStyle;
     private SettingItemClickView sicLocation;
 
@@ -36,6 +38,38 @@ public class SettingActivity extends Activity {
         initAddress();
         initAddressStyle();
         initAddressLocation();
+        initBlacknumber();
+    }
+
+    /**
+     * 黑名单设置
+     */
+    private void initBlacknumber() {
+
+        sivBlackNumber= (SettingItemView) findViewById(R.id.siv_black_number);
+
+        //判断服务是否开启，运行时才勾选，否则不勾选
+        boolean serviceRunning=ServiceStatusUtils.isServiceRunning("liu.com.mobilesafe.service.BlacknumberService",this);
+        sivBlackNumber.setChecked(serviceRunning);
+
+        sivBlackNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent service=new Intent(getApplicationContext(), BlacknumberService.class);
+
+                if (sivBlackNumber.isChecked()){
+
+
+                    sivBlackNumber.setChecked(false);
+                    stopService(service);
+
+                }else {
+
+                    sivBlackNumber.setChecked(true);
+                    stopService(service);
+                }
+            }
+        });
     }
 
     /**

@@ -20,6 +20,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.BitmapFactory;
 
 
 import com.lidroid.xutils.HttpUtils;
@@ -144,6 +145,7 @@ public class SplashActivity extends Activity {
             mHandler.sendEmptyMessageDelayed(CODE_ENTER_HOME,2000);
         }
         copyDb("address.db");
+        installShortcut();
     }
 
     /**
@@ -411,4 +413,28 @@ public class SplashActivity extends Activity {
 
         }
     }
+    // 创建快捷方式
+    private void installShortcut() {
+        boolean isCreated = PrefUtils.getBoolean("is_shortcut_created", false,
+                this);
+
+        if (!isCreated) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "手机卫士");// 快解方式名称
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, BitmapFactory
+                    .decodeResource(getResources(), R.drawable.ic_launcher));// 快解方式图标
+
+            // 跳到主页面
+            Intent actionIntent = new Intent();
+            actionIntent.setAction("liu.com.mobilesafe.HOME");
+            intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, actionIntent);
+
+            sendBroadcast(intent);
+
+            PrefUtils.putBoolean("is_shortcut_created", true, this);
+        }
+
+    }
+
 }

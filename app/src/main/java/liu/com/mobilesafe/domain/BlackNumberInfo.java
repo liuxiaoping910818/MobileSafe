@@ -6,5 +6,6 @@ package liu.com.mobilesafe.domain;
 public class BlackNumberInfo {
 
     public String number;
+    //模式
     public int mode;
 }
