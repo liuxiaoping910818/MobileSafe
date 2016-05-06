@@ -34,7 +34,7 @@ import liu.com.mobilesafe.util.ToastUtils;
     }
 
     /**
-     * 短信备份,采用回调机制来来进行短信备份
+     * 短信备份,采用回调机制来来进行短信备份：具体逻辑是，先从数据库中查出数据 ，然后判断sd卡是否持载，存在的话奖短信以xml文件的方式存入sd卡中
      *
      * @param view
      */
