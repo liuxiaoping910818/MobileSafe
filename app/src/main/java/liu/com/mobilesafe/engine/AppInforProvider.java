@@ -18,7 +18,6 @@ import liu.com.mobilesafe.domain.AppInfo;
 public class AppInforProvider{
 
 
-    //获取已安装的应用
 
     /**
      * 获取已安装应用
@@ -40,7 +39,7 @@ public class AppInforProvider{
             info.icon = icon;
 
             // 状态机, 通过01状态来表示是否具备某些属性和功能
-            int flags = applicationInfo.flags;// 获取应用标记
+            int flags = applicationInfo.flags;// 获取应用标记,flags=0000 0101
             if ((flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) == ApplicationInfo.FLAG_EXTERNAL_STORAGE) {
                 // 安装在sdcard
                 info.isRom = false;
@@ -49,6 +48,7 @@ public class AppInforProvider{
                 info.isRom = true;
             }
 
+            //FLAG_SYSTEM=0000 0001
             if ((flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM) {
                 // 系统应用
                 info.isUser = false;

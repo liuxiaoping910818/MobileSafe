@@ -97,6 +97,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
                 AppInfo info = mAdapter.getItem(position);
                 if (info != null) {// 只有普通布局才可以展示弹窗
                     mCurrentAppInfo = info;
+                    //该行代码的含义就是让Popupwindow显示在所选项的下面
                     showPopupWindow(view);
                 }
             }
@@ -136,6 +137,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
                     0.5f);
             animScale.setDuration(500);
 
+            //AnimationSet(true);使两个动画同时运行
             mPopupAnimSet = new AnimationSet(true);
             mPopupAnimSet.addAnimation(animAlpha);
             mPopupAnimSet.addAnimation(animScale);
@@ -160,6 +162,8 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
                 mSystemList = new ArrayList<AppInfo>();
                 for (AppInfo info : mList) {
                     if (info.isUser) {
+
+                        //如是是用户应用则添加到用户应用的集合中
                         mUserList.add(info);
                     } else {
                         mSystemList.add(info);
@@ -200,10 +204,15 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
 
         @Override
         public int getCount() {
-            // return mList.size();
+            // return mList.size();，因为区分了系统应用和用户应用，其是两个不同的集合，所以要返回的大小是两个集合长度的和
             return mUserList.size() + mSystemList.size() + 2;// 增加两个标题栏
         }
 
+        /**
+         * \
+         * @param position
+         * @return
+         */
         @Override
         public AppInfo getItem(int position) {
             if (position == 0 || position == mUserList.size() + 1) {

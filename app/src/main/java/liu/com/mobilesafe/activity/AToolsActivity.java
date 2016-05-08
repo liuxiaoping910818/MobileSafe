@@ -15,7 +15,7 @@ import liu.com.mobilesafe.util.SmsUtils;
 import liu.com.mobilesafe.util.ToastUtils;
 
 
-    public class AToolsActivity extends AppCompatActivity {
+public class AToolsActivity extends AppCompatActivity {
 
     private ProgressBar pbProgress;
 
@@ -68,11 +68,24 @@ import liu.com.mobilesafe.util.ToastUtils;
                             });
 
                     dialog.dismiss();
-                };
+                }
+
+                ;
             }.start();
         } else {
             ToastUtils.showToast(this, "sdcard不存在!");
         }
     }
 
+
+    /**
+     *
+     * 常用号码查询
+     * @param view
+     */
+
+    public void commonNumberQuery(View view) {
+
+        startActivity(new Intent(this,CommonNumberActivity.class));
+    }
 }
