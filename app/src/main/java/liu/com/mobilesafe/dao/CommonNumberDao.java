@@ -23,6 +23,8 @@ public class CommonNumberDao {
         // 不能从assets打开
         SQLiteDatabase database=SQLiteDatabase.openDatabase(PATH,null,SQLiteDatabase.OPEN_READONLY);
 
+        //对应于commonnumber里的classlist表，其idx总共有8个对应着8个不同的表
+
         Cursor cursor=database.query("classlist",new String[]{"name","idx"},null,null,null,null,null);
 
         ArrayList<GroupInfo> list=new ArrayList<>();
@@ -47,8 +49,8 @@ public class CommonNumberDao {
 
         return list;
     }
-
     /**
+
      * 获取某个组孩子的信息
      *
      * @param idx

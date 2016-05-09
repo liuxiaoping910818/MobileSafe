@@ -25,4 +25,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'org.robolectric:android-telephony-common:4.3_r2.robolectric-0'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
