@@ -12,17 +12,18 @@ import java.util.TimerTask;
 
 import liu.com.mobilesafe.engine.ProcessInfoProvider;
 
+/**
+ * 锁屏清理
+ */
 public class AutoKillService extends Service {
 
     private InnerScreenOffReceiver mReceiver;
     private Timer mTimer;
-    public AutoKillService() {
-    }
+
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+      return null;
     }
 
     @Override
@@ -31,6 +32,7 @@ public class AutoKillService extends Service {
 
         mReceiver=new InnerScreenOffReceiver();
         IntentFilter filter=new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        //注册一个广播
         registerReceiver(mReceiver,filter);
 
         mTimer=new Timer();

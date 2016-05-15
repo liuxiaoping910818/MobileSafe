@@ -151,6 +151,7 @@ public class ProcessInfoProvider {
         return 0;
     }
 
+    //锁屏清理
     public static void killAll(Context context){
 
         ActivityManager am= (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -159,7 +160,11 @@ public class ProcessInfoProvider {
         for (RunningAppProcessInfo runningProcessInfo:runningProcess){
 
             String packageName=runningProcessInfo.processName;
-            if (packageName.equals(context.getPackageName()));
+            if (packageName.equals(context.getPackageName())){
+
+                continue;
+        }
+            am.killBackgroundProcesses(packageName);
 
         }
     }

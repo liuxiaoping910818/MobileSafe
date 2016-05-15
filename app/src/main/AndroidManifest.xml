@@ -5,8 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -23,8 +21,10 @@
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+
 
     <application
         android:allowBackup="true"
@@ -50,6 +50,17 @@
         <activity android:name=".activity.ContactActivity" />
         <activity android:name=".activity.AddressQueryActivity" />
         <activity android:name=".activity.AToolsActivity" />
+        <activity android:name=".activity.DragViewActivity" />
+        <activity android:name=".activity.BlackNumberActivity" />
+        <activity android:name=".activity.AppManagerActivity" />
+        <activity android:name=".activity.CommonNumberActivity" />
+        <activity android:name=".activity.ProcessManagerActivity" />
+        <activity android:name=".activity.AppLockActivity" />
+        <activity android:name=".activity.EnterPwdActivity"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
+            />
+
 
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
@@ -61,6 +72,24 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".receiver.MyWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".receiver.KillReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="Liu.com.SmartSms.KIL" />
+            </intent-filter>
+        </receiver>
+
 
         <service
             android:name=".service.LocationService"
@@ -71,17 +100,14 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.DragViewActivity" />
-        <activity android:name=".activity.BlackNumberActivity" />
+
 
         <service
             android:name=".service.BlacknumberService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.AppManagerActivity" />
-        <activity android:name=".activity.CommonNumberActivity" />
-        <activity android:name=".activity.ProcessManagerActivity" />
+
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -95,7 +121,28 @@
         <service
             android:name=".service.AutoKillService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+
+
+        <service
+            android:name=".service.UpdateWidgetService"
+            android:enabled="true"
+            android:exported="true" />
+
+
+
+
+
+        <service
+            android:name=".service.WatchDogService"
+            android:enabled="true"
+            android:exported="true" />
+
+
+
+
+
     </application>
 
 </manifest>

@@ -53,5 +53,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:clickable="true"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
+        android:onClick="appLock"
+        android:padding="5dp"
+        android:text="程序锁"
+        android:textColor="#000"
+        android:textSize="18sp" />
 
 </LinearLayout>

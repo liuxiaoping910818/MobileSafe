@@ -26,6 +26,11 @@ public class AToolsActivity extends AppCompatActivity {
         pbProgress = (ProgressBar) findViewById(R.id.pb_progress);
     }
 
+    public  void appLock(View view){
+
+        startActivity(new Intent(this,AppLockActivity.class));
+    }
+
     /**
      * 电话归属地
      */
