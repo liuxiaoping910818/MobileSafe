@@ -147,6 +147,7 @@ public class SplashActivity extends Activity {
         copyDb("address.db");
         installShortcut();
         copyDb("commonnum.db");
+        copyDb("antivirus.db");
         installShortcut();
     }
 
